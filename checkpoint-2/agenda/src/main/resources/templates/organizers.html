@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizers</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<p><a href="/organizer">Add a new organizer ! </a> -- <a href="/">go to settings</a></p>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>organizer name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="organizer : ${organizers}">
+        <td th:text="${organizer.getId()}">id</td>
+        <td th:text="${organizer.getName()}"> name</td>
+        <td><a th:href="@{/organizer(id=${organizer.getId()})}">Edit</a></td>
+        <td><a th:href="@{/organizer/delete(id=${organizer.getId()})}">Remove</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

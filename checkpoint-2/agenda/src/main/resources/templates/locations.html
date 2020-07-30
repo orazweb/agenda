@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Themes</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<p><a href="/location">Add a new location ! </a> -- <a href="/"> go to settings</a></p>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>location name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="location : ${locations}">
+        <td th:text="${location.getId()}">id</td>
+        <td th:text="${location.getName()}"> name</td>
+        <td><a th:href="@{/location(id=${location.getId()})}">Edit</a></td>
+        <td><a th:href="@{/location/delete(id=${location.getId()})}">Remove</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

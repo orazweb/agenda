@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Theme</title>
+</head>
+<body>
+
+
+<h3 th:text="${theme.getId()} ? 'Edit theme' : 'Create theme'">Event</h3>
+<form method="post" th:action="@{/theme}" th:object="${theme}">
+    <input name="id" th:field="*{id}" type="hidden">
+    <label for="event-name">Event name:</label>
+    <input id="event-name" name="EventName" required th:field="*{name}" type="text">
+    <br><br>
+    <input type="submit" value="Send">
+</form>
+<br>
+<a href="/themes">go to themes list</a>
+<a href="/">go to settings</a>
+</body>
+</html>

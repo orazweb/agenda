@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Themes</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<!--<div th:each="theme : ${themes}">-->
+<!--    <p th:text="|thème : ${theme.getName()}|"></p>-->
+<!--</div>-->
+<p><a href="/theme">Add a new theme ! </a> -- <a href="/">go to settings</a></p>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>theme name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="theme : ${themes}">
+        <td th:text="${theme.getId()}">id</td>
+        <td th:text="${theme.getName()}"> name</td>
+        <td><a th:href="@{/theme(id=${theme.getId()})}">Edit</a></td>
+        <td><a th:href="@{/theme/delete(id=${theme.getId()})}">Remove</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+

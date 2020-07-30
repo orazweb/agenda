@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<!--<div th:each="ev : ${events}">-->
+<!--    <p th:text="|évenement : ${ev.getName()}|"></p>-->
+<!--    <p th:text="| date : ${ev.dateEvent}|"></p>-->
+<!--    <p th:text="${ev.getDescription()}"></p>-->
+<!--    <p th:text="${ev.getPrice()}"></p>-->
+<!--</div>-->
+<p><a href="/event">Add a new event !</a> <a href="/">go to settings</a></p>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Event name</th>
+        <th>Event theme</th>
+        <th>Event date</th>
+        <th>Event description</th>
+        <th>Event location</th>
+        <th>Event organizer</th>
+        <th>Event Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${events}">
+        <td th:text="${e.getId()}">id</td>
+        <td th:text="${e.getName()}"> name</td>
+        <td th:text="${e.getTheme().getName()}"> theme</td>
+        <td th:text="${e.getDateEvent()}">date</td>
+        <td th:text="${e.getDescription()}">description</td>
+        <td th:text="${e.getLocation().getName()}">location</td>
+        <td th:text="${e.getOrganizer().getName()}">organizer</td>
+        <td th:text="${e.getPrice()}">price</td>
+        <td><a th:href="@{/event(id=${e.getId()})}">Edit</a></td>
+        <td><a th:href="@{/event/delete(id=${e.getId()})}">Remove</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+</head>
+<body>
+<!--<div>-->
+<!--    <p th:text="|évenement : ${event.getName()}|"></p>-->
+<!--    <p th:text="| date : ${event.getDate()}|"></p>-->
+<!--    <p th:text="${event.getDescription()}"></p>-->
+<!--    <p th:text="${event.getPrice()}"></p>-->
+<!--</div>-->
+
+<h3 th:text="${event.getId()} ? 'Edit event' : 'Create event'">Event</h3>
+<form method="post" th:action="@{/event}" th:object="${event}">
+    <input name="id" th:field="*{id}" type="hidden">
+
+
+    <label for="event-name">Event name:</label>
+    <input id="event-name" name="EventName" required th:field="*{name}" type="text">
+    <br><br>
+    <label for="event-theme" th:text="${event.getId()} ? ${event.getTheme().getName()} : 'Event theme '"></label>
+    <select name="theme" id="event-theme">
+        <!--        <option value="sport" th:value="${event.getTheme().getId()}" data-th-selected="*{theme.getName()}" th:text="${}"></option>-->
+        <span th:each="theme : ${themes}">
+            <option th:value="${theme.getId()}" th:text="${theme.getName()}"></option>
+        </span>
+    </select>
+    <a href="/theme">Add a new theme</a>
+    <a href="/themes">modify themes</a>
+    <br><br>
+    <label for="event-date">Event date:</label>
+    <input id="event-date" name="EventDate" required th:field="*{dateEvent}" type="date">
+    <br><br>
+    <label for="event-description">Event description:</label>
+    <textarea id="event-description" name="EventDescription" th:field="*{description}"></textarea>
+    <br><br>
+    <label for="location-theme" th:text="${event.getId()} ? ${event.getLocation().getName()} : 'Event location '"></label>
+    <select name="location" id="location-theme">
+        <span th:each="location : ${locations}">
+            <option th:value="${location.getId()}" th:text="${location.getName()}"></option>
+        </span>
+    </select>
+    <a href="/location">Add a new location</a>
+    <a href="/locations">modify locations</a>
+    <br><br>
+    <label for="organizer-theme" th:text="${event.getId()} ? ${event.getOrganizer().getName()} : 'Event oraganizer '"></label>
+    <select name="organizer" id="organizer-theme">
+        <span th:each="organizer : ${organizers}">
+            <option th:value="${organizer.getId()}" th:text="${organizer.getName()}"></option>
+        </span>
+    </select>
+    <a href="/organizer">Add a new organizer</a>
+    <a href="/organizers">modify organizers</a>
+    <br><br>
+    <label for="event-price">Event price:</label>
+    <input id="event-price" name="EventPrice" placeholder="0" required th:field="*{price}" type="text">
+    <br><br>
+    <input type="submit" value="Send">
+</form>
+<br>
+<a href="/events">Go to events list</a>
+<a href="/">go to settings</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizers</title>
+</head>
+<body>
+
+
+<h3 th:text="${organizer.getId()} ? 'Edit organizer' : 'Create organizer'">Organizer</h3>
+<form method="post" th:action="@{/organizer}" th:object="${organizer}">
+    <input name="id" th:field="*{id}" type="hidden">
+    <label for="organizer-name">Organizer name:</label>
+    <input id="organizer-name" name="OrganizertName" required th:field="*{name}" type="text">
+    <br><br>
+    <input type="submit" value="Send">
+</form>
+<br>
+<a href="/organizers">go to organizers list</a>
+<a href="/">go to settings</a>
+</body>
+</html>
